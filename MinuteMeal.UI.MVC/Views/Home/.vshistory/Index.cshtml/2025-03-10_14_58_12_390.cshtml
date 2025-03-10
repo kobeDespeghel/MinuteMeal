@@ -1,0 +1,14 @@
+﻿@model IList<Recipe>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Recipes</h1>
+    <ul class="list-group">
+        @foreach (var recipe in Model)
+        { 
+            <partial name="PartialRowRecipe" model="recipe" />
+        }
+    </ul>
+</div>
