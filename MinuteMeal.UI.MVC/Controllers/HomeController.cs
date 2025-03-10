@@ -19,6 +19,11 @@ namespace MinuteMeal.UI.MVC.Controllers
             return View(_database.Recipes);
         }
 
+        public IActionResult Detail(int id)
+        {
+            return View(_database.Recipes[id]);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

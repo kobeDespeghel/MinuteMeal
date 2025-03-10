@@ -1,14 +1,16 @@
 ﻿@model IList<Recipe>
 @{
     ViewData["Title"] = "Home Page";
+    ViewData["Id"] = 0;
 }
 
 <div>
     <h1 class="display-3">Recipes</h1>
     <ul class="list-group list-group-flush">
         @foreach (var recipe in Model)
-        { 
-            <partial name="PartialRowRecipe" model="recipe" />
+        {
+            <partial name="PartialRowRecipe" model="recipe"/>
+            ViewData["Id"] = (Int32)ViewData["Id"] + 1;
         }
     </ul>
 </div>

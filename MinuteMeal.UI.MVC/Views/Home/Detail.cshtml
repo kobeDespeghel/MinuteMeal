@@ -1,0 +1,15 @@
+﻿@model Recipe
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<div>
+    <h1 class="display-3">@Model.Name</h1>
+    <h3>Ingredients</h3>
+    <p>@Model.Ingredients</p>
+    <h3>Instructions</h3>
+    <p>average cooking time: @Model.CookingTimeInMinutes minutes</p>
+    <p>@Model.Steps</p>
+    <a class="btn btn-secondary" asp-action="Index" asp-controller="Home">Back</a>
+
+</div>
