@@ -1,0 +1,28 @@
+﻿@model IList<Recipe>
+@{
+    ViewData["Title"] = "Recipes";
+    ViewData["Id"] = 0;
+}
+<div>
+    <h1>@ViewData["Title"]</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model[0].Name)
+                </th>
+                <th>
+                    Cooking time (min)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var recipe in Model)
+            {
+                <partial name="PartialRowRecipe" model="recipe" />
+                ViewData["Id"] = (Int32)ViewData["Id"] + 1;
+            }
+        </tbody>
+    </table>
+</div>

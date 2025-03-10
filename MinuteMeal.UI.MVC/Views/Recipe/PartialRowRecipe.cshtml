@@ -1,0 +1,14 @@
+﻿@model Recipe
+@{
+}
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => Model.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => Model.CookingTimeInMinutes)
+    </td>
+    <td>
+        <a asp-action="Detail" asp-controller="Home" asp-route-id="@ViewData["Id"]">Details</a>
+    </td>
+</tr>
