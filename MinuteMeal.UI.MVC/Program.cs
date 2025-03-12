@@ -1,10 +1,13 @@
-using MinuteMeal.UI.MVC.Core;
+using Microsoft.EntityFrameworkCore;
+using MinuteMeal.UI.MVC.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddSingleton<MinuteMealDatabase>();
+builder.Services.AddDbContext<RecipeDbContext>(options => 
+    options.UseInMemoryDatabase("MinuteMeal")
+);
 
 var app = builder.Build();
 
@@ -17,10 +20,19 @@ if (!app.Environment.IsDevelopment())
 }
 else
 {
-    var database = app.Services.GetRequiredService<MinuteMealDatabase>();
-    database.Seed();
-
+    //seed database
+    using (var scope = app.Services.CreateScope())
+    {
+        var dbContext = scope.ServiceProvider.GetRequiredService<RecipeDbContext>();
+        dbContext.Database.EnsureCreated();
+        if (!dbContext.Recipes.Any())
+        {
+            dbContext.Seed();
+            dbContext.SaveChanges();
+        }
+    }
 }
+
 
 app.UseHttpsRedirection();
 app.UseRouting();

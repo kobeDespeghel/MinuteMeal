@@ -1,6 +1,6 @@
 ﻿@model Recipe
 
-<a class="list-group-item d-flex justify-content-between" asp-controller="Home" asp-action="Detail" asp-route-id="@ViewData["Id"]">
+<a class="list-group-item d-flex justify-content-between" asp-controller="Home" asp-action="Detail" asp-route-id="@Model.Id">
     @Model.Name
     <span>@Model.CookingTimeInMinutes min</span>
 </a>

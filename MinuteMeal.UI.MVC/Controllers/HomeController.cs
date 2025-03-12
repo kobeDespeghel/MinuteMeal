@@ -1,27 +1,29 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using MinuteMeal.UI.MVC.Core;
+using MinuteMeal.UI.MVC.Context;
 using MinuteMeal.UI.MVC.Models;
 
 namespace MinuteMeal.UI.MVC.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly MinuteMealDatabase _database;
+        private readonly RecipeDbContext _context;
 
-        public HomeController(MinuteMealDatabase database)
+        public HomeController(RecipeDbContext context)
         {
-            _database = database;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            return View(_database.Recipes);
+            var recipes = _context.Recipes.ToList();
+            return View(recipes);
         }
 
         public IActionResult Detail(int id)
         {
-            return View(_database.Recipes[id]);
+            var recipe = _context.Recipes.Find(id);
+            return View(recipe);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

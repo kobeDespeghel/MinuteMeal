@@ -1,7 +1,6 @@
 ﻿@model IList<Recipe>
 @{
     ViewData["Title"] = "Recipes";
-    ViewData["Id"] = 0;
 }
 <div>
     <h1>@ViewData["Title"]</h1>
@@ -21,7 +20,6 @@
             @foreach (var recipe in Model)
             {
                 <partial name="PartialRowRecipe" model="recipe" />
-                ViewData["Id"] = (Int32)ViewData["Id"] + 1;
             }
         </tbody>
     </table>
